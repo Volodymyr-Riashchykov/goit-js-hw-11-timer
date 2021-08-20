@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html --public-url /goit-js-hw-11-timer/",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -15,5 +19,10 @@
   "bugs": {
     "url": "https://github.com/Volodymyr-Riashchykov/goit-js-hw-11-timer/issues"
   },
-  "homepage": "https://github.com/Volodymyr-Riashchykov/goit-js-hw-11-timer#readme"
+  "homepage": "https://Volodymyr-Riashchykov.github.io/goit-js-hw-11-timer",
+  "devDependencies": {
+    "gh-pages": "^3.2.3",
+    "parcel-bundler": "^1.12.5",
+    "parcel-plugin-nuke-dist": "^1.0.1"
+  }
 }
