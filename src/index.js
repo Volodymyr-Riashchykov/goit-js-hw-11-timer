@@ -1,22 +1,17 @@
 class CountdownTimer {
-    constructor({  targetDate }) {
+    constructor({ selector, targetDate }) {
+        // this.selector = document.querySelector(selector);
         this.targetDate = new Date(targetDate);
+        
+        this.refs = {
+            fieldsDeys: document.querySelector(`${selector} span[data-value = 'days']`),
+            fieldsHours: document.querySelector(`${selector} span[data-value = 'hours']`),
+            fieldsMins: document.querySelector(`${selector} span[data-value = 'mins']`),
+            fieldsSecs: document.querySelector(`${selector} span[data-value = 'secs']`)
+            
+        }
         this.indicationTime();
-        document.querySelector('head').innerHTML += `<style>
-      .timer {
-        display: flex;
-        font-size: 1.5em;
-      }
-      .field {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-right: 40px;
-      }
-      .value {
-        font-size: 4.5em;
-      }
-    </style>`;
+    
     }
 
     startTimer() {
@@ -37,25 +32,29 @@ class CountdownTimer {
 
     timeText() {
         this.days = Math.floor(this.time / (1000 * 60 * 60 * 24));
-        document.querySelector(' [data-value=days]').textContent = String(this.days).padStart(2, '0');
-
+        this.refs.fieldsDeys.textContent = String(this.days).padStart(2, '0');
+        
         this.hours = Math.floor(
             (this.time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
         );
-        document.querySelector(' [data-value=hours]').textContent = String(this.hours).padStart(2, '0');
-
+        this.refs.fieldsHours.textContent = String(this.hours).padStart(2, '0');
+        
         this.mins = Math.floor(
             (this.time % (1000 * 60 * 60)) / (1000 * 60),
         );
-        document.querySelector(' [data-value=mins]').textContent = String(this.mins).padStart(2, '0');
-
+        this.refs.fieldsMins.textContent = String(this.mins).padStart(2, '0');
+        
         this.secs = Math.floor((this.time % (1000 * 60)) / 1000);
-        document.querySelector(' [data-value=secs]').textContent = String(this.secs).padStart(2, '0')
+        this.refs.fieldsSecs.textContent = String(this.secs).padStart(2, '0')
+        
     }
+
+    
 }
+
 const countdownTimer = new CountdownTimer({
     selector: '#timer-1',
-    targetDate: 'october 21, 2021, 15:49',
+    targetDate: 'december 19, 2021, 15:49',
 });
 countdownTimer.startTimer();
 //
